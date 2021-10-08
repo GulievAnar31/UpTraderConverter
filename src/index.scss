@@ -1,0 +1,41 @@
+body {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  position: relative;
+  top: 31px;
+  left: 46px;
+  padding: 0;
+  border: 1px solid #333;
+  border-radius: 0.3em;
+  padding: 0.25rem;
+  width: 7em;
+}
+
+.equals {
+  padding: 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.main {
+  padding: 0;
+  margin: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
