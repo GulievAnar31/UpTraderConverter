@@ -79,7 +79,7 @@ function App() {
 
   return (
     <>
-    <button onClick = {() => setCheckedButton()}>Convert</button>
+    <button onClick = {() => setCheckedButton()}>Show Form</button>
     {button ? <div className="main">
         <h1>Convert</h1>
         <div>
