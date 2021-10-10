@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CurrencyRow from './components/CurrencyRow';
+import img from './assets/1.svg';
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react';
+import styles from './styles/Arrows.module.scss';
 
 const BASE_URL =
   'http://data.fixer.io/api/latest?access_key=51a117e88fc1d1955d1e9e176cd096f2&symbols=USD,RUB&format=1';
@@ -11,6 +14,17 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState();
   const [amount, setAmount] = useState(1);
   const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
+
+  const [arrow, setarrow] = useState(false);
+  const [button, setbutton] = useState(false)
+
+  const setCheckedArrow = () => {
+    setarrow(!arrow);
+  };
+
+  const setCheckedButton = () => {
+    setbutton(!button)
+  }
 
   let toAmount, fromAmount;
   if (amountInFromCurrency) {
@@ -65,24 +79,55 @@ function App() {
 
   return (
     <>
-      <div className="main">
+    <button onClick = {() => setCheckedButton()}>Convert</button>
+    {button ? <div className="main">
         <h1>Convert</h1>
-        <CurrencyRow
-          currencyOptions={currencyOptions}
-          selectedCurrency={fromCurrency}
-          onChangeCurrency={(e) => setFromCurrency(e.target.value)}
-          onChangeAmount={handleFromAmountChange}
-          amount={fromAmount}
-        />
-        <div className="equals"></div>
-        <CurrencyRow
-          currencyOptions={currencyOptions}
-          selectedCurrency={toCurrency}
-          onChangeCurrency={(e) => setToCurrency(e.target.value)}
-          onChangeAmount={handleToAmountChange}
-          amount={toAmount}
-        />
-      </div>
+        <div>
+          <img
+            className={arrow ? styles.arrowClicked : styles.arrow}
+            src={img}
+            onClick={() => setCheckedArrow()}
+          />
+          {arrow ? (
+            <div>
+              <CurrencyRow
+                currencyOptions={currencyOptions}
+                selectedCurrency={fromCurrency}
+                onChangeCurrency={(e) => setFromCurrency(e.target.value)}
+                onChangeAmount={handleFromAmountChange}
+                amount={fromAmount}
+              />
+              <div className="equals"></div>
+              <CurrencyRow
+                currencyOptions={currencyOptions}
+                selectedCurrency={toCurrency}
+                onChangeCurrency={(e) => setToCurrency(e.target.value)}
+                onChangeAmount={handleToAmountChange}
+                amount={toAmount}
+              />
+            </div>
+          ) : (
+            <div>
+              <div className="equals"></div>
+              <CurrencyRow
+                currencyOptions={currencyOptions}
+                selectedCurrency={toCurrency}
+                onChangeCurrency={(e) => setToCurrency(e.target.value)}
+                onChangeAmount={handleToAmountChange}
+                amount={toAmount}
+              />
+              <CurrencyRow
+                currencyOptions={currencyOptions}
+                selectedCurrency={fromCurrency}
+                onChangeCurrency={(e) => setFromCurrency(e.target.value)}
+                onChangeAmount={handleFromAmountChange}
+                amount={fromAmount}
+              />
+            </div>
+          )}
+        </div>
+      </div>: <div></div>}
+      
     </>
   );
 }

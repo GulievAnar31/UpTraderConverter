@@ -1,0 +1,25 @@
+.arrow {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.arrowClicked {
+  width: 35px;
+  height: 35px;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+button {
+  margin-bottom: 100px;
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
